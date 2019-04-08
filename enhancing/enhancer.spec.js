@@ -1,6 +1,7 @@
-const { repair, succeed, fail} = require('./enhancer.js');
+const { repair, succeed, fail, get} = require('./enhancer.js');
 
 describe('enhancer.js', () => {
+
     describe('repair', () => {
         const item = {
             name: 'my blade',
@@ -65,8 +66,24 @@ describe('enhancer.js', () => {
         });
         it.todo('');
     });
-});
 
-// - If the item's enhancement is less than 15, the durability of the item is decreased by 5.
-// - If the item's enhancement is 15 or more, the durability of the item is decreased by 10.
-// - If the item's enhancement level is greater than 16, the enhancement level decreases by 1 (17 goes down to 16, 18 goes down to 17).
+    describe('get', () => {
+        const item0 = {
+            name: 'my blade',
+            durability: 50,
+            enhancement: 0,
+        }
+        const item = {
+            name: 'my blade',
+            durability: 50,
+            enhancement: 10,
+        }
+        it('should not modify item\'s name if enhancement level is 0', () => {
+            expect(get(item0).name).toBe('my blade');
+        });
+        it('should add plus sign and enhancement level to item\'s name if enhancement level is greater than 0', () => {
+            expect(get(item).name).toBe('[+10] my blade');
+        });
+        it.todo('');
+    });
+});

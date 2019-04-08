@@ -22,5 +22,6 @@ function repair(item) {
 }
 
 function get(item) {
+  (item.enhancement > 0) ? item.name = `[+${item.enhancement}] ${item.name}` : null;
   return { ...item };
 }
